@@ -1,0 +1,20 @@
+{
+    "name": "fda_info",
+    "version": "1.0.0",
+    "description": "Project: fda_info",
+    "main": "index.js",
+    "dependencies": {
+        "body-parser": "^1.15.2",
+        "express": "^4.14.0",
+        "method-override": "^2.3.7",
+        "mustache": "^2.3.0",
+        "mustache-express": "^1.2.2",
+        "pg-promise": "^5.4.3"
+    },
+    "devDependencies": {},
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "author": "",
+    "license": "ISC"
+}
