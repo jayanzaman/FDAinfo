@@ -2,8 +2,9 @@
     "name": "fda_info",
     "version": "1.0.0",
     "description": "Project: fda_info",
-    "main": "index.js",
+    "main": "app.js",
     "dependencies": {
+        "bcryptjs": "^2.3.0",
         "body-parser": "^1.15.2",
         "express": "^4.14.0",
         "method-override": "^2.3.7",
@@ -15,6 +16,14 @@
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1"
     },
-    "author": "",
-    "license": "ISC"
+    "author": "Jayan Zaman",
+    "license": "ISC",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/jayanzaman/FDAinfo.git"
+    },
+    "bugs": {
+        "url": "https://github.com/jayanzaman/FDAinfo/issues"
+    },
+    "homepage": "https://github.com/jayanzaman/FDAinfo#readme"
 }

@@ -10,6 +10,13 @@ $(document).ready(function() {
                 parseData(data);
             }
         })
+        $.ajax({
+            url: 'https://api.fda.gov/drug/event.json?search=patient.drug.openfda.brand_name:%22' + drugName + '%22&count=patient.reaction.reactionmeddrapt.exact',
+            dataType: 'json',
+            success: function(data) {
+
+            }
+        })
     }
     callFDA();
 
