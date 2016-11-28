@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>FDA info</title>
+    <title>Dashboard</title>
     <link rel="stylesheet" href="../public/css/materialize.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <script src="../public/js/jquery.js"></script>
@@ -12,51 +12,41 @@
   </head>
   <body>
     <header>
-      <div class="container">
-        <div class="row">
-          <h4>Drug Information</h4>
-          <h6 class="col s6 offset-s6"></h6>
+      <nav>
+        <div class="nav-wrapper">
+          <a href="./index.html" class="brand-logo">OPEN FDA</a>
+          <ul id="nav-mobile" class="right hide-on-med-and-down">
+            <li><a href="./index.html">Dashboard</a></li>
+            <li><a href="./druginfo.html">Drug Info</a></li>
+            <li><a href="./visuals.html">Visualizations</a></li>
+            <li><a href="./professionals.html">Professional</a></li>
+          </ul>
         </div>
-      </div>
+      </nav>
     </header>
-    <div class="container">
-      <div class="row">
-        <div class="col s12 m9 l10 dosageTable">
+    <div class="row">
+      <div class="col s12 m3">
+        <div class="card teal">
+          <div class="card-content white-text">
+            <span class="card-title">Drug 1</span>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+              tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo</p>
+          </div>
+          <div class="card-action">
+            <a href="#">Details</a>
+          </div>
         </div>
       </div>
     </div>
-    <div class="container">
-      <div class="row">
-        <div class="col s12 m9 l10 dosageTable2">
+    <div class="row">
+      <div class="col s12 m3">
+        <div class="card-panel teal">
+          <span class="white-text">I am a very simple card. I am good at containing small bits of information.
+            I am convenient because I require little markup to use effectively. I am similar to what is called a panel in other frameworks.
+          </span>
         </div>
       </div>
     </div>
-    <div class="container">
-      <div id="popout" class="section scrollspy">
-        <h4>Drug Info</h4>
-        <p class="caption">
-          To create a popout collapsible, just add the class <code class=" language-markup">popout</code>.
-        </p>
-        <ul class="collapsible popout collapsible-accordion" data-collapsible="accordion">
-          <li class="">
-            <div class="collapsible-header"><i class="material-icons">lock</i>Erdos Intellectual Property Law</div>
-            <div class="collapsible-body" style="display: none;"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p></div>
-          </li>
-          <li class="">
-            <div class="collapsible-header"><i class="material-icons">business</i>Medtronic</div>
-            <div class="collapsible-body" style="display: none;"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p></div>
-          </li>
-          <li>
-            <div class="collapsible-header"><i class="material-icons">supervisor_account</i>The Lanier Law Firm</div>
-            <div class="collapsible-body"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p></div>
-          </li>
-          <li>
-            <div class="collapsible-header"><i class="material-icons">question_answer</i>Weitz &#38 Luxenberg</div>
-            <div class="collapsible-body"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p></div>
-          </li>
-        </ul>
-      </div>
-    </div>
-
   </body>
 </html>

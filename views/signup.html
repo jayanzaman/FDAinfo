@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>FDA info</title>
+    <link rel="stylesheet" href="../public/css/materialize.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="../public/js/jquery.js"></script>
+    <script src="../public/js/script.js"></script>
+    <script src="../public/js/materialize.js"></script>
+  </head>
+  <body>
+    <header>
+      <nav>
+        <div class="nav-wrapper">
+          <a href="./index.html" class="brand-logo">OPEN FDA</a>
+          <ul id="nav-mobile" class="right hide-on-med-and-down">
+            <li><a href="./index.html">Dashboard</a></li>
+            <li><a href="./druginfo.html">Drug Info</a></li>
+            <li><a href="./visuals.html">Visualizations</a></li>
+            <li><a href="./professionals.html">Professional</a></li>
+          </ul>
+        </div>
+      </nav>
+    </header>
+    <div class="container">
+      <div class="border-container">
+        <h3>Create An Account</h3>
+        <div class="col-lg-6 center-block">
+          <div class="well bs-component">
+            <form class="form-horizontal" action="/signup" method="post">
+              <fieldset>
+                <legend>Sign Up</legend>
+                <div class="form-group">
+                  <div class="col-lg-10">
+                    <input name="email" type="text" class="form-control" id="inputEmail" placeholder="Email">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="col-lg-10">
+                    <input name="password" type="password" class="form-control" id="inputPassword" placeholder="Password">
+                  </div>
+                </div>
+                <!--                 <div class="form-group">
+                  <div class="col-lg-10 col-lg-offset-2">
+                    <button type="submit" class="btn btn-primary">Join!</button>
+                  </div>
+                </div> -->
+                <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+                <i class="material-icons right">send</i>
+                </button>
+              </fieldset>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
