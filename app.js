@@ -18,7 +18,7 @@ app.use(bodyParser.urlencoded({
 app.use(bodyParser.json());
 
 app.use(session({
-    secret: 'theTruthIsOutThere51',
+    secret: 'aNewSecret',
     resave: false,
     saveUninitialized: true,
     cookie: {
@@ -28,6 +28,9 @@ app.use(session({
 
 var db = pgp('postgres://jayanzaman@localhost:5432/auth_fda');
 
+// app.get("/", function(req, res) {
+//     res.render('login')
+// })
 app.get("/", function(req, res) {
     var logged_in;
     var email;
@@ -42,13 +45,15 @@ app.get("/", function(req, res) {
         "email": email
     }
 
-    res.render('index', data);
+    res.render('login', data);
 });
+app.get("/index", function(req, res) {
+    res.render('index')
+})
 
 app.get("/signup", function(req, res) {
-    res.render('signup/index')
-});
-
+    res.render('signup')
+})
 app.post('/signup', function(req, res) {
     var data = req.body;
 
@@ -56,11 +61,14 @@ app.post('/signup', function(req, res) {
         db.none(
             "INSERT INTO users (email, password_digest) VALUES ($1, $2)", [data.email, hash]
         ).then(function() {
-            res.send('User created!');
+            res.redirect('login');
         })
     });
 })
 
+app.get("/login", function(req, res) {
+    res.render('login')
+})
 app.post('/login', function(req, res) {
     var data = req.body;
 
@@ -79,6 +87,16 @@ app.post('/login', function(req, res) {
         });
     });
 });
+app.get("/druginfo", function(req, res) {
+    res.render('druginfo')
+})
+
+app.get("/visuals", function(req, res) {
+    res.render('visuals')
+})
+app.get("/professionals", function(req, res) {
+    res.render('professionals')
+})
 
 
 
@@ -86,6 +104,8 @@ app.post('/login', function(req, res) {
 
 
 
-app.listen(3000, function() {
+var port = process.env.PORT || 3000;
+
+app.listen(port, function() {
     console.log('FDA Auth App: listening on port 3000!');
 });

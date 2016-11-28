@@ -1,0 +1,9 @@
+/* navigation bar */
+
+nav {
+  color: #fff;
+  background-color: #00bfa5;
+  width: 100%;
+  height: 56px;
+  line-height: 56px;
+}
