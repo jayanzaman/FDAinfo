@@ -7,3 +7,14 @@ nav {
   height: 56px;
   line-height: 56px;
 }
+
+/* search button */
+.btn, .btn-large {
+    text-decoration: none;
+    color: white;
+    background-color: #26a69a;
+    text-align: center;
+    letter-spacing: .5px;
+    transition: .2s ease-out;
+    cursor: pointer;
+}
