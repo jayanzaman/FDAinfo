@@ -1,8 +1,6 @@
 $(document).ready(function() {
     console.log('script loaded.')
 
-
-    // var $searchInput = $('#search').value()
     var callFDA = function() {
         var drugName = $('.autocomplete').val();
         $.ajax({
@@ -30,30 +28,52 @@ $(document).ready(function() {
     };
     addEvent();
 
+    var collapsibleListAcc = function(header, body) {
+
+        var $item = $('<li><div class="collapsible-header">' + header + '</div><div class="collapsible-body">' + body + '</div></li>')
+        $('#popcollapsible').append($item);
+        $('.collapsible').collapsible();
+    }
+
+
 
     var parseData = function(data) {
+        console.log(data)
+        var $popout = $('#popout');
+        $('#popcollapsible').remove();
+        var $accordion = $('<ul id="popcollapsible" class="collapsible popout collapsible-accordion" data-collapsible="accordion">')
+        $popout.append($accordion)
 
-        // var manufacturerName = data.results[0].openfda.manufacturer_name;
-        // var stringData = JSON.stringify(data.results[0]);
-        // console.log(data)
-        // console.log("Drug Info: " + stringData)
-        // console.log("Manufaturer: " + manufacturerName)
-
-        var dosage_and_administration = data.results[0].dosage_and_administration[0];
-        $('.dosage').text(dosage_and_administration)
         var indications_and_usage = data.results[0].indications_and_usage;
-        $('.indications').text(indications_and_usage);
+        $('.collapsible').collapsible();
+        collapsibleListAcc("Indications and Usage", indications_and_usage)
         var contraindications = data.results[0].contraindications;
-        $('.contraindications').text(contraindications);
+        collapsibleListAcc("Contraindications", contraindications)
         var warnings_and_cautions = data.results[0].warnings_and_cautions;
+        collapsibleListAcc("Warnings and Cautions", warnings_and_cautions)
         var warnings = data.results[0].warnings;
-        if (warnings_and_cautions != null) {
-            $('.warnings_and_cautions').text(warnings_and_cautions);
-        } else if (warnings != null) {
-            $('.warnings_and_cautions').text(warnings)
-        }
-        // var generic_name = data.results[0].openfda.generic_name[0];
-        if (data.results[0].openfda.generic_name[0] === "undefined") {
+
+
+
+
+
+
+
+        // var dosage_and_administration = data.results[0].dosage_and_administration[0];
+        // $('.dosage').text(dosage_and_administration)
+        // var indications_and_usage = data.results[0].indications_and_usage;
+        // $('.indications').text(indications_and_usage);
+        // var contraindications = data.results[0].contraindications;
+        // $('.contraindications').text(contraindications);
+        // var warnings_and_cautions = data.results[0].warnings_and_cautions;
+        // var warnings = data.results[0].warnings;
+        // if (warnings_and_cautions != null) {
+        //     $('.warnings_and_cautions').text(warnings_and_cautions);
+        // } else if (warnings != null) {
+        //     $('.warnings_and_cautions').text(warnings)
+        // }
+
+        if (!data.results[0].openfda || !data.results[0].openfda.generic_name || !data.results[0].openfda.generic_name.length) {
             $('.generic').text("Generic name couldn't be found")
         } else {
             var generic_name = data.results[0].openfda.generic_name[0];
@@ -65,54 +85,59 @@ $(document).ready(function() {
     };
     var adverseData = function(adverse_events) {
         var adverseEvents = adverse_events.results;
-        adverseEvents.forEach(function(event) {
-            // console.log(event.term);
-            // console.log(event.count);
-        })
+        adverseEvents.forEach(function(event) {})
 
+    }
+
+
+    var capitalizeWords = function(word) {
+
+        var keyArr = word.split('_');
+        var tempKey = [];
+        for (var i = 0; i < keyArr.length; i++) {
+            var firstLetter = keyArr[i].charAt(0).toUpperCase();
+            var word = keyArr[i].split('')
+            word.shift();
+            word.unshift(firstLetter);
+            tempKey.push(word.join(''));
+        }
+        var newKey = tempKey.join(' ');
+
+        return newKey;
+    };
+
+    var collapsibleListExp = function(header, body) {
+        $('#profExp').remove();
+        var $expandable = $('<ul class="collapsible" data-collapsible="expandable"></ul>')
+        var $item = $('<li><div class="collapsible-header">' + header + '</div><div class="collapsible-body">' + body + '</div></li>')
+        $expandable.append($item);
+
+        $('.collapsible').collapsible();
     }
 
     var professionalsData = function(data) {
 
-        $('ul.collapsible').remove();
+        $('#profExp').remove();
 
-        var $expandable = $('<ul class="collapsible" data-collapsible="expandable"></ul>')
+        var $expandable = $('<ul id="profExp" class="collapsible" data-collapsible="expandable"></ul>')
 
         $('div.professionals').append($expandable);
         for (var key in data.results[0]) {
-            if (key != "Openfda") {
-                console.log(key);
-                console.log(data.results[0][key])
+            var value = data.results[0][key]
 
-                var value = data.results[0][key]
+            var newKey = capitalizeWords(key);
+            var $item = $('<li><div class="collapsible-header">' + newKey + '</div><div class="collapsible-body">' + value + '</div></li>')
+            $expandable.append($item);
 
-                var keyArr = key.split('_');
-                var tempKey = [];
-                for (var i = 0; i < keyArr.length; i++) {
-                    var firstLetter = keyArr[i].charAt(0).toUpperCase();
-                    var word = keyArr[i].split('')
-                    word.shift();
-                    word.unshift(firstLetter);
-                    tempKey.push(word.join(''));
-                }
-                var newKey = tempKey.join(' ');
+            $('.collapsible').collapsible();
+        }
 
-                var $item = $('<li><div class="collapsible-header">' + newKey + '</div><div class="collapsible-body">' + value + '</div></li>')
-                $expandable.append($item);
-            } else {
-                console.log("openfda")
+        $('#autocomplete-input').on('keydown', function(e) {
+            if (e.which == 13) {
+                $('#searchbtn').trigger('click')
             }
-
-        }
-        $('.collapsible').collapsible();
-    }
-
-    $('#autocomplete-input').on('keydown', function(e) {
-        if (e.which == 13) {
-            $('#searchbtn').trigger('click')
-        }
-    })
-
+        })
+    };
 
 
     var drugs = {
@@ -316,6 +341,36 @@ $(document).ready(function() {
         "Zyprexa": null,
         "Zyrtec": null
     }
+
+    var matchDrugs = function() {
+
+        var pairs = {}
+        for (var key in drugs) {
+            var brand = key
+
+            var pairArr = []
+            setTimeout(function() {
+                $.ajax({
+                    url: 'https://api.fda.gov/drug/label.json?search=openfda.brand_name.%22' + brand + '%22',
+                    dataType: 'json',
+                    success: function(data) {
+                        if (!data.results[0].openfda || !data.results[0].openfda.brand_name[0]) {
+                            pairs[brand] = "No match"
+                        } else {
+                            var brName = data.results[0].openfda.brand_name[0];
+                            pairs[brand] = brName;
+                            pairArr.push(pairs)
+                        }
+                    }
+                })
+            }, 1000)
+        }
+        console.log(pairArr)
+    }
+
+
+    matchDrugs();
+
 
 
     $('input.autocomplete').autocomplete({
