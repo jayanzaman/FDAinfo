@@ -15,12 +15,20 @@
     <header>
       <nav>
         <div class="nav-wrapper">
+          <ul id="userdropdown" class="dropdown-content">
+            <li><a href="profile">Profile</a></li>
+            <li><a href="settings">Settings</a></li>
+            <li class="divider"></li>
+            <li><a href="logout">Log Out</a></li>
+          </ul>
           <a href="index" class="brand-logo">OPEN FDA</a>
           <ul id="nav-mobile" class="right hide-on-med-and-down">
             <li><a href="index">Dashboard</a></li>
             <li><a href="druginfo">Drug Info</a></li>
             <li><a href="visuals">Visualizations</a></li>
             <li><a href="professionals">Professional</a></li>
+            <!-- Dropdown Trigger -->
+            <li><a class="dropdown-button" href="#!" data-activates="userdropdown">Profile<i class="material-icons right">arrow_drop_down</i></a></li>
           </ul>
         </div>
       </nav>
@@ -36,41 +44,10 @@
             <button type="submit" class="btn btn-primary" id="searchbtn">Search</button>
           </div>
         </div>
-        <div class="container">
-          <div class="col s9 l3">
-            <fieldset>
-              <legend>Generic Name</legend>
-              <h5 class="generic"></h5>
-            </fieldset>
-          </div>
-        </div>
         <br>
-        <div class="container">
-          <div class="col s12">
-            <h4>Drug Information</h4>
-          </div>
-        </div>
         <div class="container">
           <div class="col s10 ">
             <div id="popout" class="section scrollspy">
-<!--               <ul class="collapsible popout collapsible-accordion" data-collapsible="accordion">
-                <li class="">
-                  <div class="collapsible-header">Dosage and How to Administer</div>
-                  <div class="collapsible-body" style="display: none;"><p class="dosage"></p></div>
-                </li>
-                <li class="">
-                  <div class="collapsible-header">Indications for Use</div>
-                  <div class="collapsible-body" style="display: none;"><p class="indications"></p></div>
-                </li>
-                <li>
-                  <div class="collapsible-header">Contraindications</div>
-                  <div class="collapsible-body"><p class="contraindications"></p></div>
-                </li>
-                <li>
-                  <div class="collapsible-header">Warnings</div>
-                  <div class="collapsible-body"><p class="warnings_and_cautions"></p></div>
-                </li>
-              </ul> -->
             </div>
           </div>
         </div>

@@ -24,6 +24,8 @@ $(document).ready(function() {
     var addEvent = function() {
         $('#searchbtn').on('click', function() {
             callFDA();
+
+
         })
     };
     addEvent();
@@ -345,17 +347,20 @@ $(document).ready(function() {
     var matchDrugs = function() {
 
         var pairs = {}
-        for (var key in drugs) {
-            var brand = key
+        var pairArr = []
 
-            var pairArr = []
-            setTimeout(function() {
+        for (var key in drugs) {
+
+            var brand = key
+            console.log(brand);
+            setTimeout(function ajaxCall() {
                 $.ajax({
                     url: 'https://api.fda.gov/drug/label.json?search=openfda.brand_name.%22' + brand + '%22',
                     dataType: 'json',
                     success: function(data) {
                         if (!data.results[0].openfda || !data.results[0].openfda.brand_name[0]) {
                             pairs[brand] = "No match"
+                            pairArr.push(pairs)
                         } else {
                             var brName = data.results[0].openfda.brand_name[0];
                             pairs[brand] = brName;
@@ -363,14 +368,15 @@ $(document).ready(function() {
                         }
                     }
                 })
-            }, 1000)
+            }, 100)
+
         }
+
         console.log(pairArr)
     }
 
 
-    matchDrugs();
-
+    // matchDrugs();
 
 
     $('input.autocomplete').autocomplete({

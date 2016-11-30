@@ -98,9 +98,36 @@ app.get("/professionals", function(req, res) {
     res.render('professionals')
 })
 
+app.get("/settings", function(req, res) {
+    var logged_in;
+    var email;
+
+    if (req.session.user) {
+        logged_in = true;
+        email = req.session.user.email;
+    }
+    var data = {
+        "logged_in": logged_in,
+        "email": email
+    }
+    res.render('settings')
+})
+
+app.get("/dashboard", function(req, res) {
+    var logged_in;
+    var email;
+
+    if (req.session.user) {
+        logged_in = true;
+        email = req.session.user.email;
+    }
+    var data = {
+        "logged_in": logged_in,
+        "email": email
+    }
 
 
-
+})
 
 
 
