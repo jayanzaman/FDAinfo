@@ -44,3 +44,37 @@ font-size: 25px;
     font-size: 16px;
 
 }
+
+/* dashboard Rx box */
+fieldset.rx_info{
+    border: 1px solid #c0c0c0;
+    margin: auto;
+    padding: 0.35em 0.625em 0.75em;
+    width: 60%;
+    Height: auto;
+}
+h4.addRx {
+    font-size: 2.28rem;
+    /* line-height: 40%; */
+    margin: auto;
+    padding: 25px;
+    /* width: 100%; */
+    text-align: center;
+}
+#add_rx_btn{
+    text-decoration: none;
+    color: white;
+    background-color: #26a69a;
+    text-align: center;
+    letter-spacing: .5px;
+    transition: .2s ease-out;
+    cursor: pointer;
+    width: 100%;
+}
+fieldset.rx_info {
+    border: 1px solid #c0c0c0;
+    margin: auto;
+    padding: 1em 1em 1em;
+    width: 80%;
+    height: auto;
+}

@@ -26,7 +26,7 @@ app.use(session({
     }
 }))
 
-var db = pgp('postgres://jayanzaman@localhost:5432/auth_fda');
+var db = pgp('postgres://jayanzaman@localhost:5432/fda_open');
 
 // app.get("/", function(req, res) {
 //     res.render('login')
@@ -47,8 +47,8 @@ app.get("/", function(req, res) {
 
     res.render('login', data);
 });
-app.get("/index", function(req, res) {
-    res.render('index')
+app.get("/dashboard", function(req, res) {
+    res.render('dashboard')
 })
 
 app.get("/signup", function(req, res) {
@@ -61,7 +61,7 @@ app.post('/signup', function(req, res) {
         db.none(
             "INSERT INTO users (email, password_digest) VALUES ($1, $2)", [data.email, hash]
         ).then(function() {
-            res.redirect('login');
+            res.render('login');
         })
     });
 })
@@ -113,7 +113,7 @@ app.get("/settings", function(req, res) {
     res.render('settings')
 })
 
-app.get("/dashboard", function(req, res) {
+app.get("/dashboard/:id", function(req, res) {
     var logged_in;
     var email;
 
@@ -125,14 +125,40 @@ app.get("/dashboard", function(req, res) {
         "logged_in": logged_in,
         "email": email
     }
+    var data = {
+        "logged_in": logged_in,
+        "email": email
+    }
 
+    res.render('dashboard')
 
 })
 
+app.post('/dashboard/:id', function(req, res) {
+    var logged_in;
+    var email;
+    var id = req.params.id;
+
+    if (req.session.user) {
+        logged_in = true;
+        email = req.session.user.email;
+    }
+
+    var data = {
+        "logged_in": logged_in,
+        "email": email
+    }
+    var newRx = req.body;
+
+    db.none("INSERT INTO druginfo(drug_name, rx_date, pickup_date, exp_date, prescribing_dr, dr_phone, users_email, users_id) VALUES($1, $2, $3, $4, $5, $6, $7, $8)", [newRx.drug_name, newRx.rx_date, newRx.pickup_date, newRx.exp_date, newRx.prescribing_dr, newRx.dr_phone, req.session.user.email, req.params.id])
+        .then(function(data) {
+            res.redirect('/dashboard/' + id)
+        })
+})
 
 
 var port = process.env.PORT || 3000;
 
 app.listen(port, function() {
-    console.log('FDA Auth App: listening on port 3000!');
+    console.log('Open FDA App: listening on port' + port);
 });
