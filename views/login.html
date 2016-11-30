@@ -5,13 +5,41 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Login</title>
     <link rel="stylesheet" href="/css/materialize.css">
-        <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/style.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <script src="/js/jquery.js"></script>
     <script src="/js/script.js"></script>
     <script src="/js/materialize.js"></script>
   </head>
   <body>
+    {{#logged_in}}
+    <header>
+      <nav>
+        <div class="nav-wrapper">
+          <a href="index" class="brand-logo">OPEN FDA</a>
+          <ul id="nav-mobile" class="right hide-on-med-and-down">
+            <li><a href="dashboard/{{id}}">Dashboard</a></li>
+            <li><a href="druginfo">Drug Info</a></li>
+            <li><a href="visuals">Visualizations</a></li>
+            <li><a href="professionals">Professional</a></li>
+          </ul>
+        </div>
+      </nav>
+    </header>
+    <div class="container">
+      <div class="border-container">
+        <br>
+        <div class="col-lg-6 center-block">
+          <div class="alert alert-dismissible alert-warning">
+            <h4>Welcome {{email}} with an id of {{id}}!</h4>
+            <p>Head over to the Dashboard to save your prescriptions.</p>
+          </div>
+          <a href="/logout">Logout!</a>
+        </div>
+      </div>
+    </div>
+    {{/logged_in}}
+    {{^logged_in}}
     <header>
       <nav>
         <div class="nav-wrapper">
@@ -24,36 +52,24 @@
           </ul>
         </div>
       </nav>
-      </header>
-
+    </header>
     <div class="container">
       <div class="border-container">
         <br>
-        {{#logged_in}}
-        <div class="col-lg-6 center-block">
-          <div class="alert alert-dismissible alert-warning">
-            <h4>Welcome {{email}}!</h4>
-            <p>Head over to the Dashboard to save your prescriptions.</p>
-          </div>
-          <a href="/logout">Logout!</a>
-        </div>
-        {{/logged_in}}
-        {{^logged_in}}
         <div class="col-lg-6 center-block">
           <div class="well bs-component">
             <form class="form-horizontal" action="/login" method="post">
               <fieldset>
                 <legend>Login</legend>
                 <div class="form-group">
-
                   <div class="col-lg-10">
                     <input name="email" type="text" class="form-control" id="inputEmail" placeholder="Email">
                   </div>
                 </div>
-                  <div class="col-lg-10">
-                    <input name="password" type="password" class="form-control" id="inputPassword" placeholder="Password">
-                  </div>
+                <div class="col-lg-10">
+                  <input name="password" type="password" class="form-control" id="inputPassword" placeholder="Password">
                 </div>
+
                 <div class="form-group">
                   <div class="col-lg-10 col-lg-offset-2">
                     <button type="submit" class="btn btn-primary">Login</button>
@@ -62,15 +78,13 @@
               </fieldset>
             </form>
           </div>
-          <p>Not a member? <a href="signup">Sign Up!</a></p>
-          <p><a href="dashboard">Continue without signing up</a></p>
         </div>
-        {{/logged_in}}
       </div>
+      <p>Not a member? <a href="signup">Sign Up!</a></p>
+      <p><a href="dashboard">Continue without signing up</a></p>
     </div>
-
-
-
-
-    </body>
-  </html>
+    {{/logged_in}}
+  </div>
+</div>
+</body>
+</html>

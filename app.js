@@ -28,47 +28,25 @@ app.use(session({
 
 var db = pgp('postgres://jayanzaman@localhost:5432/fda_open');
 
-// app.get("/", function(req, res) {
-//     res.render('login')
-// })
 app.get("/", function(req, res) {
     var logged_in;
     var email;
+    var id;
 
     if (req.session.user) {
         logged_in = true;
         email = req.session.user.email;
+        id = req.session.user.id;
     }
 
     var data = {
         "logged_in": logged_in,
-        "email": email
+        "email": email,
+        "id": id
     }
 
     res.render('login', data);
 });
-app.get("/dashboard", function(req, res) {
-    res.render('dashboard')
-})
-
-app.get("/signup", function(req, res) {
-    res.render('signup')
-})
-app.post('/signup', function(req, res) {
-    var data = req.body;
-
-    bcrypt.hash(data.password, 10, function(err, hash) {
-        db.none(
-            "INSERT INTO users (email, password_digest) VALUES ($1, $2)", [data.email, hash]
-        ).then(function() {
-            res.render('login');
-        })
-    });
-})
-
-app.get("/login", function(req, res) {
-    res.render('login')
-})
 app.post('/login', function(req, res) {
     var data = req.body;
 
@@ -87,6 +65,31 @@ app.post('/login', function(req, res) {
         });
     });
 });
+
+app.get("/dashboard", function(req, res) {
+
+    res.render('dashboard')
+})
+
+app.get("/signup", function(req, res) {
+    res.render('signup')
+})
+app.post('/signup', function(req, res) {
+    var data = req.body;
+
+    bcrypt.hash(data.password, 10, function(err, hash) {
+        db.none(
+            "INSERT INTO users (email, password_digest) VALUES ($1, $2)", [data.email, hash]
+        ).then(function() {
+            res.render('login');
+        })
+    });
+})
+
+// app.get("/login", function(req, res) {
+//     res.render('login')
+// })
+
 app.get("/druginfo", function(req, res) {
     res.render('druginfo')
 })
@@ -116,41 +119,37 @@ app.get("/settings", function(req, res) {
 app.get("/dashboard/:id", function(req, res) {
     var logged_in;
     var email;
+    var id;
 
     if (req.session.user) {
         logged_in = true;
         email = req.session.user.email;
+        id = req.session.user.id;
     }
     var data = {
         "logged_in": logged_in,
-        "email": email
-    }
-    var data = {
-        "logged_in": logged_in,
-        "email": email
+        "email": email,
+        "id": id
     }
 
-    res.render('dashboard')
+    res.render('dashboard', data)
 
 })
 
 app.post('/dashboard/:id', function(req, res) {
     var logged_in;
     var email;
-    var id = req.params.id;
+    var id;
 
     if (req.session.user) {
         logged_in = true;
         email = req.session.user.email;
+        id = req.session.user.id;
     }
 
-    var data = {
-        "logged_in": logged_in,
-        "email": email
-    }
     var newRx = req.body;
 
-    db.none("INSERT INTO druginfo(drug_name, rx_date, pickup_date, exp_date, prescribing_dr, dr_phone, users_email, users_id) VALUES($1, $2, $3, $4, $5, $6, $7, $8)", [newRx.drug_name, newRx.rx_date, newRx.pickup_date, newRx.exp_date, newRx.prescribing_dr, newRx.dr_phone, req.session.user.email, req.params.id])
+    db.none("INSERT INTO druginfo(drug_name, rx_date, pickup_date, exp_date, prescribing_dr, dr_phone, users_email, users_id) VALUES($1, $2, $3, $4, $5, $6, $7, $8)", [newRx.drug_name, newRx.rx_date, newRx.pickup_date, newRx.exp_date, newRx.prescribing_dr, newRx.dr_phone, email, id])
         .then(function(data) {
             res.redirect('/dashboard/' + id)
         })

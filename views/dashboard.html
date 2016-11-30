@@ -36,13 +36,20 @@
     </header>
     <!--     <div class="container"> -->
     <div class="container">
-
     </div>
-    <div class="container">
+    {{#logged_in}}
+    <div class="col-lg-6 center-block">
+      <div class="alert alert-dismissible alert-warning">
+        <h4>Welcome {{email}}!</h4>
+        <p>Save your prescriptions.</p>
+      </div>
+      <a href="/logout">Logout!</a>
+    </div>
+        <div class="container">
       <h4 class="addRx">Add a New Prescription</h4>
       <fieldset class="rx_info">
         <legend>Rx Information</legend>
-        <form method="POST" action="/dashboard/:id">
+        <form method="POST" action="/dashboard/{{id}}">
           <div class="row">
             <form class="col s12">
               <div class="row">
@@ -77,8 +84,53 @@
               </div>
             </form>
           </div>
-        </fieldset>
-      </form>
+        </form>
+      </fieldset>
     </div>
+    {{/logged_in}}
+    {{^logged_in}}
+    <div class="container">
+      <h4 class="addRx">Add a New Prescription</h4>
+      <fieldset class="rx_info">
+        <legend>Rx Information</legend>
+        <form method="POST" action="/dashboard/{{id}}">
+          <div class="row">
+            <form class="col s12">
+              <div class="row">
+                <div class="input-field col s6">
+                  <input id="icon_prefix" name="drug_name" id="drug_name" type="text" class="validate">
+                  <label for="icon_prefix">Drug Name</label>
+                </div>
+                <div class="input-field col s6">
+                  <input type="date" name="rx_date" id="rx_date" class="datepicker">
+                  <label for="icon_telephone">Rx Date</label>
+                </div>
+                <div class="input-field col s6">
+                  <input type="date" name="pickup_date" id="pickup_date" class="datepicker">
+                  <label for="icon_telephone">Pick-up Date</label>
+                </div>
+                <div class="input-field col s6">
+                  <input type="date" name="exp_date" id="exp_date" class="datepicker" >
+                  <label for="icon_telephone">Exp Date</label>
+                </div>
+                <div class="input-field col s6">
+                  <!-- <i class="fa fa-user-md prefix" aria-hidden="true"></i> -->
+                  <input id="icon_prefix" name="prescribing_dr" id="prescribing_dr" type="text" class="validate">
+                  <label for="icon_prefix">Prescribing Physician</label>
+                </div>
+                <div class="input-field col s6">
+                  <!-- <i class="material-icons prefix">phone</i> -->
+                  <input id="icon_telephone" name="dr_phone" id="dr_phone" type="tel" class="validate">
+                  <label for="icon_telephone">Telephone</label>
+                </div>
+                <button class="btn waves-effect waves-light" id="add_rx_btn" type="submit" name="action">Add Prescription
+                </button>
+              </div>
+            </form>
+          </div>
+        </form>
+      </fieldset>
+    </div>
+    {{/logged_in}}
   </body>
 </html>
