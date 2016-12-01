@@ -44,6 +44,9 @@ app.get("/", function(req, res) {
     }
     res.render('login', data);
 });
+app.get("/login", function(req, res) {
+    res.render('login')
+})
 app.post('/login', function(req, res) {
     var data = req.body;
     db.one(
@@ -107,6 +110,24 @@ app.get("/dashboard/:id", function(req, res) {
 })
 
 app.post('/dashboard/:id', function(req, res) {
+    var logged_in;
+    var email;
+    var id;
+
+    if (req.session.user) {
+        logged_in = true;
+        email = req.session.user.email;
+        id = req.session.user.id;
+    }
+
+    var newRx = req.body;
+
+    db.none("INSERT INTO druginfo(drug_name, rx_date, pickup_date, exp_date, prescribing_dr, dr_phone, users_email, users_id) VALUES($1, $2, $3, $4, $5, $6, $7, $8)", [newRx.drug_name, newRx.rx_date, newRx.pickup_date, newRx.exp_date, newRx.prescribing_dr, newRx.dr_phone, email, id])
+        .then(function(data) {
+            res.redirect('/dashboard/' + id)
+        })
+})
+app.put('/dashboard/:id', function(req, res) {
     var logged_in;
     var email;
     var id;
@@ -242,18 +263,23 @@ app.get("/settings/:id", function(req, res) {
         })
 })
 
-app.get("/logout", function(req, res) {
-    var logged_in = false;
+app.get("/logout/:id", function(req, res) {
+    var logged_in;
     var email;
     var id;
 
+    if (req.session.user) {
+        logged_in = false;
+        email = req.session.user.email;
+        id = req.session.user.id;
+    }
     var data = {
         "logged_in": logged_in,
         "email": email,
         "id": id
     }
 
-    res.render('/', data);
+    res.render('login', data);
 });
 
 var port = process.env.PORT || 3000;

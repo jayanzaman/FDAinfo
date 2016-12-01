@@ -40,15 +40,16 @@
       {{#drugs}}
       <div class="col s4">
         <div class="card-panel grey lighten-5">
-          <h5 class="grey-text darken-3">Drug Name : {{drug_name}}</h5>
+          <h5 class="grey-text darken-3" >Drug Name : {{drug_name}}</h5>
           <h5 class="grey-text darken-3">Rx Date   : {{rx_date}}</h5>
           <h5 class="grey-text darken-3">Picked Up : {{picked_up}}</h5>
           <h5 class="grey-text darken-3">Exp Date  : {{exp_date}}</h5>
           <h5 class="grey-text darken-3">Prescriber: {{prescribing_dr}}</h5>
           <h5 class="grey-text darken-3">Phone No  : {{dr_phone}}</h5>
-          <a class="waves-effect waves-light btn center-align" href="#">See Drug Details</a>
-          <a class="btn-floating small waves-effect waves-light teal" href="#"><i class="material-icons">mode_edit</i></a>
-          <a class="btn-floating small waves-effect waves-light red" href="#"><i class="material-icons">delete</i></a>
+          <a style="margin-left: 37px;" class="waves-effect waves-light btn center-align" href="#">See Drug Details</a>
+          <a style="float: right"; class="btn-floating small waves-effect waves-light light-blue darken-4" href="#"><i class="material-icons">mode_edit</i></a>
+          <a style="float: left"; method="PUT" action="/dashboard/{{id}}" class="btn-floating small waves-effect waves-light red" id={{id}} href="#"><i class="material-icons">delete</i></a>
+          <!-- the goal is to grab the drug's id to grab the relevant information from the database and plop into the prescription form to be able to edit it -->
         </div>
       </div>
       {{/drugs}}

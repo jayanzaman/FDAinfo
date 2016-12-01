@@ -7,9 +7,17 @@
     <link rel="stylesheet" href="/css/materialize.css">
     <link rel="stylesheet" href="/css/style.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
     <script src="/js/jquery.js"></script>
     <script src="/js/script.js"></script>
     <script src="/js/materialize.js"></script>
+    <style>
+    body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+    }
+    </style>
   </head>
   <body>
     {{#logged_in}}
@@ -22,7 +30,7 @@
             <li class="divider"></li>
             <li><a href="logout">Log Out</a></li>
           </ul>
-          <a href="index" class="brand-logo">OPEN FDA</a>
+          <a href="login" class="brand-logo">OPEN FDA</a>
           <ul id="nav-mobile" class="right hide-on-med-and-down">
             <li><a href="dashboard/{{id}}">Dashboard</a></li>
             <li><a href="druginfo">Drug Info</a></li>
@@ -38,9 +46,7 @@
         <div class="col-lg-6 center-block">
           <div class="alert alert-dismissible alert-warning">
             <h4>You are logged in!</h4>
-            <p>Head over to the Dashboard to save your prescriptions.</p>
           </div>
-          <a href="/logout">Logout!</a>
         </div>
       </div>
     </div>
@@ -55,9 +61,9 @@
             <li class="divider"></li>
             <li><a href="logout">Log Out</a></li>
           </ul>
-          <a href="index" class="brand-logo">OPEN FDA</a>
+          <a href="dashboard" class="brand-logo">OPEN FDA</a>
           <ul id="nav-mobile" class="right hide-on-med-and-down">
-            <li><a href="dashboard">Dashboard</a></li>
+            <!--             <li><a href="dashboard">Dashboard</a></li> -->
             <li><a href="druginfo">Drug Info</a></li>
             <li><a href="visuals">Visualizations</a></li>
             <li><a href="professionals">Professional</a></li>
@@ -65,7 +71,7 @@
         </div>
       </nav>
     </header>
-    <div class="container">
+<!--     <div class="container">
       <div class="border-container">
         <br>
         <div class="col-lg-6 center-block">
@@ -91,11 +97,50 @@
           </div>
         </div>
       </div>
-      <p>Not a member? <a href="signup">Sign Up!</a></p>
-      <p><a href="dashboard">Continue without signing up</a></p>
+      <div class="container">
+        <div class="row">
+          <div class="col s6 offset-s3 center-align">
+            <h5>Don't have an account? <a href="signup">Sign Up <i class="fa fa-arrow-up" aria-hidden="true"></i></a></h5>
+            <h5><a href="druginfo">Continue without signing up <i class="fa fa-arrow-right" aria-hidden="true"></i></a></h5>
+          </div>
+        </div>
+      </div>
     </div>
-    {{/logged_in}}
   </div>
 </div>
+</body>
+<body>
+ --><div class="section"></div>
+<div class="z-depth-1 grey lighten-4 row" style="display: inline-block; padding: 32px 48px 0px 48px; border: 1px solid #EEE;">
+  <form class="col s12" method="post" action="/login">
+    <div class="row">
+      <div class="input-field col s12">
+        <input class="validate" type="email" name="email" id="email">
+        <label for="email">Enter your email</label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-field col s12">
+        <input class="validate" type="password" name="password" id="password">
+        <label for="password">Enter your password</label>
+      </div>
+      <label style="float: left;">
+        <h5><a class="pink-text" href="signup"><b>Sign Up </b><i class="fa fa-arrow-up" aria-hidden="true"></i></a></h5>
+      </label>
+      <label style="float: right;">
+        <h5><a class="light-blue-text darken-4" href="druginfo"><b>Continue without signing up </b><i class="fa fa-arrow-right" aria-hidden="true"></i></a><h5>
+      </label>
+    </div>
+    <br>
+    <center>
+    <div class="row">
+      <button type="submit" name="btn_login" class="col s12 btn btn-large waves-effect teal accent-4">Login</button>
+    </div>
+    </center>
+  </form>
+</div>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.1/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
+    {{/logged_in}}
 </body>
 </html>
