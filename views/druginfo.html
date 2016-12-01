@@ -12,21 +12,22 @@
     <script src="/js/script.js"></script>
   </head>
   <body>
+    {{#logged_in}}
     <header>
       <nav>
         <div class="nav-wrapper">
           <ul id="userdropdown" class="dropdown-content">
-            <li><a href="profile">Profile</a></li>
-            <li><a href="settings">Settings</a></li>
-            <li class="divider"></li>
-            <li><a href="logout">Log Out</a></li>
+            <li><a href="../profile/{{id}}">Profile</a></li>
+            <li><a href="../settings/{{id}}">Settings</a></li>
+            <li class="../divider/{{id}}"></li>
+            <li><a href="../logout/{{id}}">Log Out</a></li>
           </ul>
           <a href="index" class="brand-logo">OPEN FDA</a>
           <ul id="nav-mobile" class="right hide-on-med-and-down">
-            <li><a href="dashboard">Dashboard</a></li>
-            <li class="active"><a href="druginfo">Drug Info</a></li>
-            <li><a href="visuals">Visualizations</a></li>
-            <li><a href="professionals">Professionals</a></li>
+            <li><a href="../dashboard/{{id}}">Dashboard</a></li>
+            <li class="active"><a href="../druginfo/{{id}}">Drug Info</a></li>
+            <li><a href="../visuals/{{id}}">Visualizations</a></li>
+            <li><a href="../professionals/{{id}}">Professionals</a></li>
             <!-- Dropdown Trigger -->
             <li><a class="dropdown-button" href="#!" data-activates="userdropdown">Account<i class="material-icons right">arrow_drop_down</i></a></li>
           </ul>
@@ -35,7 +36,6 @@
     </header>
     <div class="row">
       <div class="col s12">
-        <!-- <div class="container"> -->
         <div class="container row">
           <div class="input-field col s9">
             <input type="text" id="autocomplete-input" class="autocomplete col s12" placeholder="Search for Drug Name" >
@@ -51,8 +51,44 @@
             </div>
           </div>
         </div>
-        <!-- </div> -->
       </div>
     </div>
+    {{/logged_in}}
+    <!-- not logged in -->
+    {{^logged_in}}
+    <header>
+      <nav>
+        <div class="nav-wrapper">
+          <a href="index" class="brand-logo">OPEN FDA</a>
+          <ul id="nav-mobile" class="right hide-on-med-and-down">
+            <li><a href="dashboard">Dashboard</a></li>
+            <li class="active"><a href="druginfo">Drug Info</a></li>
+            <li><a href="visuals">Visualizations</a></li>
+            <li><a href="professionals">Professionals</a></li>
+            <li><a href="/">Log In</a></li>
+          </ul>
+        </div>
+      </nav>
+    </header>
+    <div class="row">
+      <div class="col s12">
+        <div class="container row">
+          <div class="input-field col s9">
+            <input type="text" id="autocomplete-input" class="autocomplete col s12" placeholder="Search for Drug Name" >
+          </div>
+          <div class="input-field col s3">
+            <button type="submit" class="btn btn-primary" id="searchbtn">Search</button>
+          </div>
+        </div>
+        <br>
+        <div class="container">
+          <div class="col s10 ">
+            <div id="popout" class="section scrollspy">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    {{/logged_in}}
   </body>
 </html>

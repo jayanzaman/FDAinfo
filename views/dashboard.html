@@ -13,21 +13,22 @@
     <script src="/js/script.js"></script>
   </head>
   <body>
+    {{#logged_in}}
     <header>
       <nav>
         <div class="nav-wrapper">
           <ul id="userdropdown" class="dropdown-content">
-            <li><a href="profile">Profile</a></li>
-            <li><a href="settings">Settings</a></li>
+            <li><a href="../profile/{{id}}">Profile</a></li>
+            <li><a href="../settings/{{id}}">Settings</a></li>
             <li class="divider"></li>
-            <li><a href="logout">Log Out</a></li>
+            <li><a href="../logout/{{id}}">Log Out</a></li>
           </ul>
           <a href="index" class="brand-logo">OPEN FDA</a>
           <ul id="nav-mobile" class="right hide-on-med-and-down">
             <li class="active"><a href="dashboard">Dashboard</a></li>
-            <li><a href="druginfo">Drug Info</a></li>
-            <li><a href="visuals">Visualizations</a></li>
-            <li><a href="professionals">Professionals</a></li>
+            <li><a href="../druginfo/{{id}}">Drug Info</a></li>
+            <li><a href="../visuals/{{id}}">Visualizations</a></li>
+            <li><a href="../professionals/{{id}}">Professionals</a></li>
             <!-- Dropdown Trigger -->
             <li><a class="dropdown-button" href="#!" data-activates="userdropdown">Account<i class="material-icons right">arrow_drop_down</i></a></li>
           </ul>
@@ -35,8 +36,8 @@
       </nav>
     </header>
     <!--     <div class="container"> -->
-    {{#drugs}}
     <div class="row">
+      {{#drugs}}
       <div class="col s4">
         <div class="card-panel grey lighten-5">
           <h5 class="grey-text darken-3">Drug Name : {{drug_name}}</h5>
@@ -50,9 +51,8 @@
           <a class="btn-floating small waves-effect waves-light red" href="#"><i class="material-icons">delete</i></a>
         </div>
       </div>
+      {{/drugs}}
     </div>
-    {{/drugs}}
-    {{#logged_in}}
     <div class="container">
       <h4 class="addRx">Add a New Prescription</h4>
       <fieldset class="rx_info">
@@ -95,6 +95,27 @@
     </div>
     {{/logged_in}}
     {{^logged_in}}
+    <header>
+      <nav>
+        <div class="nav-wrapper">
+          <ul id="userdropdown" class="dropdown-content">
+            <li><a href="profile">Profile</a></li>
+            <li><a href="settings">Settings</a></li>
+            <li class="divider"></li>
+            <li><a href="logout">Log Out</a></li>
+          </ul>
+          <a href="index" class="brand-logo">OPEN FDA</a>
+          <ul id="nav-mobile" class="right hide-on-med-and-down">
+            <li class="active"><a href="dashboard">Dashboard</a></li>
+            <li><a href="../druginfo">Drug Info</a></li>
+            <li><a href="visuals">Visualizations</a></li>
+            <li><a href="professionals">Professionals</a></li>
+            <!-- Dropdown Trigger -->
+            <li><a class="dropdown-button" href="#!" data-activates="userdropdown">Account<i class="material-icons right">arrow_drop_down</i></a></li>
+          </ul>
+        </div>
+      </nav>
+    </header>
     <div class="container">
       <h4 class="addRx">Add a New Prescription</h4>
       <fieldset class="rx_info">
