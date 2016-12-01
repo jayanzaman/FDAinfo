@@ -36,70 +36,50 @@
       </nav>
     </header>
     <!--     <div class="container"> -->
-    <div class="row">
-      {{#drugs}}
-      <div class="col s4">
-        <div class="card-panel grey lighten-5">
-          <h5 class="grey-text darken-3">Drug Name : {{drug_name}}</h5>
-          <h5 class="grey-text darken-3">Rx Date   : {{rx_date}}</h5>
-          <h5 class="grey-text darken-3">Picked Up : {{picked_up}}</h5>
-          <h5 class="grey-text darken-3">Exp Date  : {{exp_date}}</h5>
-          <h5 class="grey-text darken-3">Prescriber: {{prescribing_dr}}</h5>
-          <h5 class="grey-text darken-3">Phone No  : {{dr_phone}}</h5>
-          <a style="margin-left: 37px;" class="waves-effect waves-light btn center-align " href="#" id="drug_details{{id}}">See Drug Details</a>
-          <form method="GET" action="/drugupdate/{{id}}">
-            <button style="float: right"; class="btn-floating small waves-effect waves-light light-blue darken-4 edit" id="edit_{{id}}" href="#"><i class="material-icons">mode_edit</i></button>
-          </form>
-          <form method="GET" action="/drugupdate/{{id}}">
-            <button style="float: left"; class="btn-floating small waves-effect waves-light red delete" id="delete_{{id}}"><i class="material-icons">delete</i></button>
-          </form>
-        </div>
-      </div>
-      {{/drugs}}
-    </div>
     <div class="container">
-      <h4 class="addRx">Add a New Prescription</h4>
+      <h4 class="addRx">Update Prescription</h4>
       <fieldset class="rx_info">
         <legend>Rx Information</legend>
-        <form method="POST" action="/dashboard/{{id}}">
+        {{#drug}}
+        <form method="post" action="/drugupdate/{{id}}?_method=PUT">
           <div class="row">
-            <form class="col s12">
+            <div class="col s12">
               <div class="input-field col s6">
-                <input id="icon_prefix"  name="drug_name" id="drug_name" type="text" class="validate">
+                <input id="icon_prefix"  value="{{drug_name}}" name="drug_name" id="drug_name" type="text" class="validate">
                 <label for="icon_prefix">Drug Name</label>
               </div>
               <div class="input-field col s6">
-                <input type="date" name="rx_date" id="rx_date" class="datepicker">
+                <input type="date" value="{{rx_date}}" name="rx_date" id="rx_date" class="datepicker">
                 <label for="icon_telephone">Rx Date</label>
               </div>
               <div class="input-field col s6">
-                <input type="date" name="pickup_date" id="pickup_date" class="datepicker">
+                <input type="date" value="{{pickup_date}}" name="pickup_date" id="pickup_date" class="datepicker">
                 <label for="icon_telephone">Pick-up Date</label>
               </div>
               <div class="input-field col s6">
-                <input type="date" name="exp_date" id="exp_date" class="datepicker" >
+                <input type="date" value="{{exp_date}}" name="exp_date" id="exp_date" class="datepicker" >
                 <label for="icon_telephone">Exp Date</label>
               </div>
               <div class="input-field col s6">
-                <!-- <i class="fa fa-user-md prefix" aria-hidden="true"></i> -->
-                <input id="icon_prefix" name="prescribing_dr" id="prescribing_dr" type="text" class="validate">
+                <input id="icon_prefix" value="{{prescribing_dr}}" name="prescribing_dr" id="prescribing_dr" type="text" class="validate">
                 <label for="icon_prefix">Prescribing Physician</label>
               </div>
               <div class="input-field col s6">
-                <!-- <i class="material-icons prefix">phone</i> -->
-                <input id="icon_telephone" name="dr_phone" id="dr_phone" type="tel" class="validate">
+                <input id="icon_telephone" value="{{dr_phone}}" name="dr_phone" id="dr_phone" type="tel" class="validate">
                 <label for="icon_telephone">Telephone</label>
               </div>
-              <button class="btn waves-effect waves-light" id="add_rx_btn" type="submit" name="action">Add Prescription
+              <button class="btn waves-effect waves-light" id="add_rx_btn" type="submit" name="action" id="updatePrescription">Update Prescription
               </button>
-            </form>
+            </div>
+            {{/drug}}
           </div>
         </form>
       </fieldset>
     </div>
     {{/logged_in}}
     {{^logged_in}}
-    <header>
+    <h3>Not Logged in</h3>
+    <!--  <header>
       <nav>
         <div class="nav-wrapper">
           <a href="index" class="brand-logo">OPEN FDA</a>
@@ -138,12 +118,12 @@
                   <label for="icon_telephone">Exp Date</label>
                 </div>
                 <div class="input-field col s6">
-                  <!-- <i class="fa fa-user-md prefix" aria-hidden="true"></i> -->
+                  <i class="fa fa-user-md prefix" aria-hidden="true"></i>
                   <input id="icon_prefix" name="prescribing_dr" id="prescribing_dr" type="text" class="validate">
                   <label for="icon_prefix">Prescribing Physician</label>
                 </div>
                 <div class="input-field col s6">
-                  <!-- <i class="material-icons prefix">phone</i> -->
+                  <i class="material-icons prefix">phone</i>
                   <input id="icon_telephone" name="dr_phone" id="dr_phone" type="tel" class="validate">
                   <label for="icon_telephone">Telephone</label>
                 </div>
@@ -154,7 +134,7 @@
           </div>
         </form>
       </fieldset>
-    </div>
+    </div> -->
     {{/logged_in}}
   </body>
 </html>

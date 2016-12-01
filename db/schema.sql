@@ -19,7 +19,7 @@ CREATE TABLE druginfo (
   prescribing_dr VARCHAR(255),
   dr_phone VARCHAR(25),
   users_email VARCHAR(255),
-  users_id INT
+  users_id INTEGER
 
 );
 

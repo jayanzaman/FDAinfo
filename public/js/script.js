@@ -30,6 +30,29 @@ $(document).ready(function() {
     };
     addEvent();
 
+    var updatePrescription = function() {
+
+        $.ajax({
+            url: '/drugupdate/',
+            type: 'PUT',
+            success: function(data) {
+                console.log(data)
+            }
+        })
+    }
+
+    var prescriptionEvents = function() {
+
+        var $update = $('#updatePrescription');
+        $update.on('click', function() {
+            updatePrescription();
+        })
+
+
+
+    };
+    // prescriptionEvents();
+
     var collapsibleListAcc = function(header, body) {
 
         var $item = $('<li><div class="collapsible-header">' + header + '</div><div class="collapsible-body">' + body + '</div></li>')

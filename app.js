@@ -4,6 +4,7 @@ const pgp = require('pg-promise')();
 const mustacheExpress = require('mustache-express');
 const bodyParser = require("body-parser");
 const session = require('express-session');
+const methodOverride = require('method-override');
 
 /* BCrypt stuff here */
 const bcrypt = require('bcryptjs');
@@ -12,6 +13,7 @@ app.engine('html', mustacheExpress());
 app.set('view engine', 'html');
 app.set('views', __dirname + '/views');
 app.use("/", express.static(__dirname + '/public'));
+app.use(methodOverride('_method')) //method override
 app.use(bodyParser.urlencoded({
     extended: false
 }));
@@ -127,7 +129,7 @@ app.post('/dashboard/:id', function(req, res) {
             res.redirect('/dashboard/' + id)
         })
 })
-app.put('/dashboard/:id', function(req, res) {
+app.get('/drugupdate/:id', function(req, res) {
     var logged_in;
     var email;
     var id;
@@ -137,13 +139,46 @@ app.put('/dashboard/:id', function(req, res) {
         email = req.session.user.email;
         id = req.session.user.id;
     }
+    var data = {
+        "logged_in": logged_in,
+        "email": email,
+        "id": id
+    }
+    db.any("SELECT * FROM druginfo WHERE druginfo.id = $1", [req.params.id])
+        .then(function(drug) {
+            data = {
+                "logged_in": logged_in,
+                "email": email,
+                "id": req.params.id,
+                "drug": drug
+            }
+            res.render('drugupdate', data)
+        })
 
-    var newRx = req.body;
 
-    db.none("INSERT INTO druginfo(drug_name, rx_date, pickup_date, exp_date, prescribing_dr, dr_phone, users_email, users_id) VALUES($1, $2, $3, $4, $5, $6, $7, $8)", [newRx.drug_name, newRx.rx_date, newRx.pickup_date, newRx.exp_date, newRx.prescribing_dr, newRx.dr_phone, email, id])
-        .then(function(data) {
+})
+app.put('/drugupdate/:id', function(req, res) {
+    var logged_in;
+    var email;
+    var id;
+    var druginfo = req.body;
+    if (req.session.user) {
+        logged_in = true;
+        email = req.session.user.email;
+        id = req.session.user.id;
+    }
+    var data = {
+        "logged_in": logged_in,
+        "email": email,
+        "id": id
+    }
+    db.none("UPDATE druginfo SET drug_name=$1, rx_date=$2, pickup_date=$3, exp_date=$4, prescribing_dr=$5, dr_phone=$6 WHERE id=$7", [druginfo.drug_name, druginfo.rx_date, druginfo.pickup_date, druginfo.exp_date, druginfo.prescribing_dr, druginfo.dr_phone, req.params.id])
+        .then(function() {
             res.redirect('/dashboard/' + id)
         })
+
+
+
 })
 
 app.get("/druginfo", function(req, res) {
