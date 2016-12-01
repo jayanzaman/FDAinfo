@@ -24,34 +24,9 @@ $(document).ready(function() {
     var addEvent = function() {
         $('#searchbtn').on('click', function() {
             callFDA();
-
-
         })
     };
     addEvent();
-
-    var updatePrescription = function() {
-
-        $.ajax({
-            url: '/drugupdate/',
-            type: 'PUT',
-            success: function(data) {
-                console.log(data)
-            }
-        })
-    }
-
-    var prescriptionEvents = function() {
-
-        var $update = $('#updatePrescription');
-        $update.on('click', function() {
-            updatePrescription();
-        })
-
-
-
-    };
-    // prescriptionEvents();
 
     var collapsibleListAcc = function(header, body) {
 
@@ -59,8 +34,6 @@ $(document).ready(function() {
         $('#popcollapsible').append($item);
         $('.collapsible').collapsible();
     }
-
-
 
     var parseData = function(data) {
         console.log(data)
@@ -78,42 +51,13 @@ $(document).ready(function() {
         collapsibleListAcc("Warnings and Cautions", warnings_and_cautions)
         var warnings = data.results[0].warnings;
 
-
-
-
-
-
-
-        // var dosage_and_administration = data.results[0].dosage_and_administration[0];
-        // $('.dosage').text(dosage_and_administration)
-        // var indications_and_usage = data.results[0].indications_and_usage;
-        // $('.indications').text(indications_and_usage);
-        // var contraindications = data.results[0].contraindications;
-        // $('.contraindications').text(contraindications);
-        // var warnings_and_cautions = data.results[0].warnings_and_cautions;
-        // var warnings = data.results[0].warnings;
-        // if (warnings_and_cautions != null) {
-        //     $('.warnings_and_cautions').text(warnings_and_cautions);
-        // } else if (warnings != null) {
-        //     $('.warnings_and_cautions').text(warnings)
-        // }
-
         if (!data.results[0].openfda || !data.results[0].openfda.generic_name || !data.results[0].openfda.generic_name.length) {
             $('.generic').text("Generic name couldn't be found")
         } else {
             var generic_name = data.results[0].openfda.generic_name[0];
             $('.generic').text(generic_name)
         }
-
-
-
     };
-    var adverseData = function(adverse_events) {
-        var adverseEvents = adverse_events.results;
-        adverseEvents.forEach(function(event) {})
-
-    }
-
 
     var capitalizeWords = function(word) {
 
@@ -164,6 +108,15 @@ $(document).ready(function() {
         })
     };
 
+    var adverseData = function(adverse_events) {
+        var adverseEvents = adverse_events.results;
+        adverseEvents.forEach(function(event) {
+
+            console.log(event.term)
+            console.log(event.count)
+        })
+
+    };
 
     var drugs = {
         "Abilify": null,

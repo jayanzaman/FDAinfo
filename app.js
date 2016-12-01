@@ -176,9 +176,27 @@ app.put('/drugupdate/:id', function(req, res) {
         .then(function() {
             res.redirect('/dashboard/' + id)
         })
+})
 
+app.delete('/drugdelete/:id', function(req, res) {
+    var logged_in;
+    var email;
+    var id;
 
-
+    if (req.session.user) {
+        logged_in = true;
+        email = req.session.user.email;
+        id = req.session.user.id;
+    }
+    var data = {
+        "logged_in": logged_in,
+        "email": email,
+        "id": id
+    }
+    db.none("DELETE FROM druginfo WHERE id=$1", [req.params.id])
+        .then(function() {
+            res.redirect('/dashboard/' + id)
+        })
 })
 
 app.get("/druginfo", function(req, res) {
@@ -199,7 +217,7 @@ app.get("/druginfo/:id", function(req, res) {
         "email": email,
         "id": id
     }
-    db.any("SELECT * FROM druginfo WHERE druginfo.users_email = $1 ", [data.email])
+    db.any("SELECT * FROM druginfo WHERE druginfo.id = $1 ", [req.params.id])
         .then(function(drugs) {
             data = {
                 "logged_in": logged_in,

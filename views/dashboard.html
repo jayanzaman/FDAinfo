@@ -46,11 +46,15 @@
           <h5 class="grey-text darken-3">Exp Date  : {{exp_date}}</h5>
           <h5 class="grey-text darken-3">Prescriber: {{prescribing_dr}}</h5>
           <h5 class="grey-text darken-3">Phone No  : {{dr_phone}}</h5>
-          <a style="margin-left: 37px;" class="waves-effect waves-light btn center-align " href="#" id="drug_details{{id}}">See Drug Details</a>
+          <div class="center-align">
+            <form method="GET" action="/druginfo/{{id}}">
+              <button class="waves-effect waves-light btn center-align " href="#" id="drug_details{{id}}">See Drug Details</button>
+            </form>
+          </div>
           <form method="GET" action="/drugupdate/{{id}}">
             <button style="float: right"; class="btn-floating small waves-effect waves-light light-blue darken-4 edit" id="edit_{{id}}" href="#"><i class="material-icons">mode_edit</i></button>
           </form>
-          <form method="GET" action="/drugupdate/{{id}}">
+          <form method="POST" action="/drugdelete/{{id}}?_method=DELETE">
             <button style="float: left"; class="btn-floating small waves-effect waves-light red delete" id="delete_{{id}}"><i class="material-icons">delete</i></button>
           </form>
         </div>

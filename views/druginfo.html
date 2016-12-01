@@ -38,7 +38,9 @@
       <div class="col s12">
         <div class="container row">
           <div class="input-field col s9">
-            <input type="text" id="autocomplete-input" class="autocomplete col s12" placeholder="Search for Drug Name" >
+            {{#drugs}}
+            <input type="text" id="autocomplete-input" class="autocomplete col s12" placeholder="Search for Drug Name" value="{{drug_name}}">
+            {{/drugs}}
           </div>
           <div class="input-field col s3">
             <button type="submit" class="btn btn-primary" id="searchbtn">Search</button>
@@ -74,7 +76,9 @@
       <div class="col s12">
         <div class="container row">
           <div class="input-field col s9">
-            <input type="text" id="autocomplete-input" class="autocomplete col s12" placeholder="Search for Drug Name" >
+
+            <input type="text" id="autocomplete-input" class="autocomplete col s12" placeholder="Search for Drug Name">
+
           </div>
           <div class="input-field col s3">
             <button type="submit" class="btn btn-primary" id="searchbtn">Search</button>
