@@ -16,12 +16,18 @@
     <header>
       <nav>
         <div class="nav-wrapper">
+          <ul id="userdropdown" class="dropdown-content">
+            <li><a href="profile">Profile</a></li>
+            <li><a href="settings">Settings</a></li>
+            <li class="divider"></li>
+            <li><a href="logout">Log Out</a></li>
+          </ul>
           <a href="index" class="brand-logo">OPEN FDA</a>
           <ul id="nav-mobile" class="right hide-on-med-and-down">
             <li><a href="dashboard/{{id}}">Dashboard</a></li>
             <li><a href="druginfo">Drug Info</a></li>
             <li><a href="visuals">Visualizations</a></li>
-            <li><a href="professionals">Professional</a></li>
+            <li><a href="professionals">Professionals</a></li>
           </ul>
         </div>
       </nav>
@@ -31,7 +37,7 @@
         <br>
         <div class="col-lg-6 center-block">
           <div class="alert alert-dismissible alert-warning">
-            <h4>Welcome {{email}} with an id of {{id}}!</h4>
+            <h4>You are logged in!</h4>
             <p>Head over to the Dashboard to save your prescriptions.</p>
           </div>
           <a href="/logout">Logout!</a>
@@ -43,6 +49,12 @@
     <header>
       <nav>
         <div class="nav-wrapper">
+          <ul id="userdropdown" class="dropdown-content">
+            <li><a href="profile">Profile</a></li>
+            <li><a href="settings">Settings</a></li>
+            <li class="divider"></li>
+            <li><a href="logout">Log Out</a></li>
+          </ul>
           <a href="index" class="brand-logo">OPEN FDA</a>
           <ul id="nav-mobile" class="right hide-on-med-and-down">
             <li><a href="dashboard">Dashboard</a></li>
@@ -69,7 +81,6 @@
                 <div class="col-lg-10">
                   <input name="password" type="password" class="form-control" id="inputPassword" placeholder="Password">
                 </div>
-
                 <div class="form-group">
                   <div class="col-lg-10 col-lg-offset-2">
                     <button type="submit" class="btn btn-primary">Login</button>

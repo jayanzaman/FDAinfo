@@ -144,232 +144,81 @@ $(document).ready(function() {
 
     var drugs = {
         "Abilify": null,
-        "Aciphex": null,
         "Actonel": null,
         "Actos": null,
-        "Adderall": null,
         "Adipex": null,
         "Advil": null,
-        "Aldactone": null,
-        "Aleve": null,
-        "Allegra": null,
-        "Altace": null,
-        "Ambien": null,
         "Amoxil": null,
         "AndroGel": null,
-        "Apresoline": null,
         "Armour": null,
-        "Ativan": null,
-        "Avapro": null,
-        "Avelox": null,
-        "Avodart": null,
-        "Bactroban": null,
         "Benicar": null,
-        "Bentyl": null,
-        "Biaxin": null,
-        "Brilinta": null,
         "Buspar": null,
-        "Bystolic": null,
-        "Caltrate": null,
-        "Cardizem": null,
-        "Cardura": null,
-        "Catapres": null,
-        "Ceftin": null,
-        "Celebrex": null,
-        "Celexa": null,
-        "Chantix": null,
-        "Cialis": null,
-        "Cipro": null,
-        "Cleocin": null,
-        "Clovate": null,
-        "Cogentin": null,
-        "Colcrys": null,
-        "Concerta": null,
-        "Coreg": null,
-        "Coumadin": null,
-        "Cozaar": null,
-        "Crestor": null,
         "Cymbalta": null,
         "Daliresp": null,
         "Deltasone": null,
-        "Depakote": null,
-        "Desyrel": null,
-        "Detrol": null,
-        "Dexilant": null,
-        "Diabeta": null,
-        "Diflucan": null,
-        "Dilantin": null,
-        "Diovan": null,
-        "Ditropan": null,
-        "Dolophine": null,
-        "Dramamine": null,
-        "Duragesic": null,
-        "Dyazide": null,
-        "Effexor": null,
-        "Elavil": null,
-        "Enbrel": null,
         "Evista": null,
-        "Exelon": null,
-        "Flagyl": null,
-        "Flexeril": null,
-        "Flomax": null,
-        "Flonase": null,
-        "Focalin": null,
-        "Folvite": null,
-        "Fosamax": null,
-        "Gablofen": null,
-        "Glucophage": null,
-        "Glucotrol": null,
-        "HCTZ": null,
-        "Humalog": null,
-        "Humira": null,
-        "Hytrin": null,
-        "Imitrex": null,
-        "Inderal": null,
-        "Januvia": null,
-        "Juxtapid": null,
-        "Keflex": null,
-        "Kenalog": null,
-        "Klonopin": null,
-        "K-Tab": null,
-        "Lamictal": null,
-        "Lanoxin": null,
         "Lantus": null,
-        "Lasix": null,
-        "Latuda": null,
         "Levaquin": null,
         "Levemir": null,
-        "Levitra": null,
-        "Lexapro": null,
-        "Lipitor": null,
-        "Lopid": null,
-        "Lopressor": null,
-        "Lotensin": null,
-        "Lotrimin": null,
-        "Lovenox": null,
-        "Lunesta": null,
         "Lyrica": null,
-        "Macrobid": null,
         "Medrol": null,
-        "Mevacor": null,
-        "Minocin": null,
-        "Mirapex": null,
-        "Mobic": null,
-        "Namenda": null,
-        "Nasonex": null,
-        "Neurontin": null,
-        "Nexium": null,
-        "Niaspan": null,
-        "NitroStat": null,
-        "Nizoral": null,
         "Norvasc": null,
         "Novolog": null,
-        "Omnicef": null,
         "Onglyza": null,
         "OxyContin": null,
-        "Pamelor": null,
-        "Patanol": null,
-        "Paxil": null,
-        "Pen": null,
-        "Pepcid": null,
         "Percocet": null,
         "Phenergan": null,
-        "Plavix": null,
         "Pradaxa": null,
-        "Pravachol": null,
-        "Premarin": null,
-        "Prevacid": null,
-        "Prilosec": null,
-        "Prinivil": null,
         "Pristiq": null,
-        "ProAir": null,
-        "Procardia": null,
-        "Proscar": null,
-        "Protonix": null,
-        "Prozac": null,
-        "Pyridium": null,
-        "Reglan": null,
-        "Relafen": null,
         "Remeron": null,
-        "Requip": null,
-        "Restoril": null,
         "Rheumatrex": null,
         "Risperdal": null,
-        "Robaxin": null,
         "Robitussin": null,
-        "Seroquel": null,
-        "Singulair": null,
-        "Soma": null,
-        "Spiriva": null,
         "Strattera": null,
-        "Suboxone": null,
-        "Synthroid": null,
-        "Tamiflu": null,
-        "Tenormin": null,
         "Tessalon": null,
-        "Topamax": null,
-        "Travatan": null,
         "Tylenol": null,
         "Uceris": null,
         "Uloric": null,
-        "Ultram": null,
-        "Valium": null,
-        "Valtrex": null,
-        "Vasotec": null,
-        "Verelan": null,
-        "VESIcare": null,
-        "Viagra": null,
-        "Vibramycin": null,
         "Vicodin": null,
-        "Victoza": null,
-        "Voltaren": null,
-        "Vytorin": null,
-        "Vyvanse": null,
-        "Wellbutrin": null,
         "Xalatan": null,
-        "Xanax": null,
-        "Xarelto": null,
-        "Zanaflex": null,
-        "Zantac": null,
         "Zebeta": null,
         "Zetia": null,
-        "Zithromax": null,
-        "Zocor": null,
-        "Zofran": null,
-        "Zoloft": null,
-        "Zostavax": null,
-        "Zovirax": null,
-        "Zyloprim": null,
-        "Zyprexa": null,
         "Zyrtec": null
+    }
+
+
+    var pairs = {}
+    var pairArr = []
+    var i = 1
+
+    function doTimeout(brand) {
+        setTimeout(function ajaxCall() {
+
+            console.log(brand);
+            $.ajax({
+                url: 'https://api.fda.gov/drug/label.json?search=openfda.brand_name.%22' + brand + '%22',
+                dataType: 'json',
+                // success: function(data) {
+                // }
+            }).done(function(data) {
+                if (!data.results[0].openfda || !data.results[0].openfda.generic_name[0]) {
+                    pairs[brand] = "No match"
+                    pairArr.push(pairs)
+                } else {
+                    var gnName = data.results[0].openfda.generic_name[0];
+                    pairs[brand] = gnName;
+                    pairArr.push(pairs)
+                }
+            })
+            i++
+        }, i + 0000)
     }
 
     var matchDrugs = function() {
 
-        var pairs = {}
-        var pairArr = []
 
         for (var key in drugs) {
-
-            var brand = key
-            console.log(brand);
-            setTimeout(function ajaxCall() {
-                $.ajax({
-                    url: 'https://api.fda.gov/drug/label.json?search=openfda.brand_name.%22' + brand + '%22',
-                    dataType: 'json',
-                    success: function(data) {
-                        if (!data.results[0].openfda || !data.results[0].openfda.brand_name[0]) {
-                            pairs[brand] = "No match"
-                            pairArr.push(pairs)
-                        } else {
-                            var brName = data.results[0].openfda.brand_name[0];
-                            pairs[brand] = brName;
-                            pairArr.push(pairs)
-                        }
-                    }
-                })
-            }, 100)
-
+            doTimeout(key)
         }
 
         console.log(pairArr)
@@ -377,6 +226,7 @@ $(document).ready(function() {
 
 
     // matchDrugs();
+    //I've used this function to compare my list of drugs to the API to see which ones were working and which ones weren't
 
 
     $('input.autocomplete').autocomplete({

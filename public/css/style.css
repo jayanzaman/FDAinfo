@@ -78,3 +78,7 @@ fieldset.rx_info {
     width: 80%;
     height: auto;
 }
+.container .row {
+    margin-left: 0;
+    margin-right: -0;
+}

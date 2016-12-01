@@ -50,6 +50,7 @@ app.get("/", function(req, res) {
 app.post('/login', function(req, res) {
     var data = req.body;
 
+
     db.one(
         "SELECT * FROM users WHERE email = $1", [data.email]
     ).catch(function() {
@@ -86,9 +87,6 @@ app.post('/signup', function(req, res) {
     });
 })
 
-// app.get("/login", function(req, res) {
-//     res.render('login')
-// })
 
 app.get("/druginfo", function(req, res) {
     res.render('druginfo')
@@ -131,8 +129,15 @@ app.get("/dashboard/:id", function(req, res) {
         "email": email,
         "id": id
     }
+    db.any("SELECT * from druginfo WHERE druginfo.users_email = $1 ", [data.email])
+        .then(function(data) {
+            console.log(data)
+            res.render('dashboard', {
+                drugs: data
+            })
 
-    res.render('dashboard', data)
+        })
+
 
 })
 
@@ -155,6 +160,19 @@ app.post('/dashboard/:id', function(req, res) {
         })
 })
 
+app.get("/logout", function(req, res) {
+    var logged_in = false;
+    var email;
+    var id;
+
+    var data = {
+        "logged_in": logged_in,
+        "email": email,
+        "id": id
+    }
+
+    res.render('/', data);
+});
 
 var port = process.env.PORT || 3000;
 
