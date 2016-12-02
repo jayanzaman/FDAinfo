@@ -46,6 +46,14 @@ font-size: 25px;
 }
 
 /* dashboard Rx box */
+.divider {
+    height: 3px;
+    overflow: hidden;
+    background-color: #00bfa5;
+}
+
+
+
 fieldset.rx_info{
     border: 1px solid #c0c0c0;
     margin: auto;

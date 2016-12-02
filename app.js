@@ -60,7 +60,7 @@ app.post('/login', function(req, res) {
         bcrypt.compare(data.password, user.password_digest, function(err, cmp) {
             if (cmp) {
                 req.session.user = user;
-                res.redirect('/');
+                res.redirect('/dashboard/' + user.id);
             } else {
                 res.send('Email/Password not found.')
             }
