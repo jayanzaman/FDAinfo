@@ -1,31 +1,35 @@
 {
-  "name": "fda_info",
-  "version": "1.0.0",
-  "description": "Project: fda_info",
-  "main": "app.js",
-  "dependencies": {
-    "bcryptjs": "^2.3.0",
-    "body-parser": "^1.15.2",
-    "chart.js": "^2.4.0",
-    "express": "^4.14.0",
-    "express-session": "^1.14.2",
-    "method-override": "^2.3.7",
-    "mustache": "^2.3.0",
-    "mustache-express": "^1.2.2",
-    "pg-promise": "^5.4.3"
-  },
-  "devDependencies": {},
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "Jayan Zaman",
-  "license": "ISC",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/jayanzaman/FDAinfo.git"
-  },
-  "bugs": {
-    "url": "https://github.com/jayanzaman/FDAinfo/issues"
-  },
-  "homepage": "https://github.com/jayanzaman/FDAinfo#readme"
+    "name": "fda_info",
+    "version": "1.0.0",
+    "description": "Project: fda_info",
+    "main": "app.js",
+    "dependencies": {
+        "bcryptjs": "^2.3.0",
+        "body-parser": "^1.15.2",
+        "chart.js": "^2.4.0",
+        "express": "^4.14.0",
+        "express-session": "^1.14.2",
+        "method-override": "^2.3.7",
+        "mustache": "^2.3.0",
+        "mustache-express": "^1.2.2",
+        "pg-promise": "^5.4.3"
+    },
+    "devDependencies": {},
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "start": "node server.js"
+    },
+    "engines": {
+        "node": "6.8.1"
+    },
+    "author": "Jayan Zaman",
+    "license": "ISC",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/jayanzaman/FDAinfo.git"
+    },
+    "bugs": {
+        "url": "https://github.com/jayanzaman/FDAinfo/issues"
+    },
+    "homepage": "https://github.com/jayanzaman/FDAinfo#readme"
 }

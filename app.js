@@ -29,7 +29,7 @@ app.use(session({
     }
 }))
 
-var db = pgp('postgres://jayanzaman@localhost:5432/fda_open');
+var db = pgp(process.env.DATABASE_URL || 'postgres://jayanzaman@localhost:5432/fda_open');
 
 app.get("/", function(req, res) {
     var logged_in;
