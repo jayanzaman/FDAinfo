@@ -333,7 +333,7 @@ app.get("/logout/:id", function(req, res) {
         "id": id
     }
 
-    res.render('login', data);
+    res.redirect('/', data);
 });
 
 var port = process.env.PORT || 3000;
