@@ -25,6 +25,10 @@ $(document).ready(function() {
         $('#searchbtn').on('click', function() {
             callFDA();
         })
+        $('.detailsButton').on('click', function() {
+            callFDA();
+        })
+
     };
     addEvent();
 
@@ -109,9 +113,14 @@ $(document).ready(function() {
     };
 
     var adverseData = function(adverse_events) {
+        $('.card-panel').remove()
+
         var adverseEvents = adverse_events.results;
         var eventObj = {};
         var highestCount = 1;
+        var $searchItem = $('input.visualSearch')
+        var $drugname = $searchItem.val()
+        console.log($drugname)
 
         adverseEvents.forEach(function(event) {
             var term = event.term;
@@ -121,18 +130,21 @@ $(document).ready(function() {
             }
 
         })
-        console.log(eventObj);
+
         var $visuals = $('div.visuals');
         var $chartContainer = $('<div class="card-panel"></div>')
         $visuals.append($chartContainer);
+        var $adverseEventsTitle = $('<h4 class="adverseEventsTitle center-align">Patient Reports on ' + $drugname + '</h4>')
+        $chartContainer.append($adverseEventsTitle);
         var $badEventContainer = $('<div class="badEventContainer"></div>')
+
 
         for (var key in eventObj) {
             var count = eventObj[key]
             var percentage = Math.ceil((count / highestCount) * 100);
             console.log(percentage)
             var $badEventContainer = $('<div class="badEventContainer"></div>')
-            $badEventContainer.append('<div class="term">' + key + ' (' + count + ' incidences)</div>')
+            $badEventContainer.append('<div class="term">' + key + ' (' + count + ')</div>')
 
             $badEventContainer.append('<div class="progress"><div class="determinate" style="width: ' + percentage + '%"></div></div>')
             $chartContainer.append($badEventContainer);
