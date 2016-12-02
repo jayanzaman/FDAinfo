@@ -86,3 +86,11 @@ fieldset.rx_info {
 .drug_details{
 
 }
+
+.chartContainer{
+  background-color: blue;
+  margin: auto;
+  width: 100%;
+  height: auto;
+}
+

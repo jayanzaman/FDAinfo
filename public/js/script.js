@@ -36,7 +36,7 @@ $(document).ready(function() {
     }
 
     var parseData = function(data) {
-        console.log(data)
+
         var $popout = $('#popout');
         $('#popcollapsible').remove();
         var $accordion = $('<ul id="popcollapsible" class="collapsible popout collapsible-accordion" data-collapsible="accordion">')
@@ -110,11 +110,34 @@ $(document).ready(function() {
 
     var adverseData = function(adverse_events) {
         var adverseEvents = adverse_events.results;
-        adverseEvents.forEach(function(event) {
+        var eventObj = {};
+        var highestCount = 1;
 
-            console.log(event.term)
-            console.log(event.count)
+        adverseEvents.forEach(function(event) {
+            var term = event.term;
+            eventObj[term] = event.count;
+            if (event.count > highestCount) {
+                highestCount = event.count;
+            }
+
         })
+        console.log(eventObj);
+        var $visuals = $('div.visuals');
+        var $chartContainer = $('<div class="card-panel"></div>')
+        $visuals.append($chartContainer);
+        var $badEventContainer = $('<div class="badEventContainer"></div>')
+
+        for (var key in eventObj) {
+            var count = eventObj[key]
+            var percentage = Math.ceil((count / highestCount) * 100);
+            console.log(percentage)
+            var $badEventContainer = $('<div class="badEventContainer"></div>')
+            $badEventContainer.append('<div class="term">' + key + ' (' + count + ' incidences)</div>')
+
+            $badEventContainer.append('<div class="progress"><div class="determinate" style="width: ' + percentage + '%"></div></div>')
+            $chartContainer.append($badEventContainer);
+        }
+
 
     };
 
