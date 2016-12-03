@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>FDA info</title>
+    <title>Drug Info</title>
     <link rel="stylesheet" href="/css/materialize.css">
     <link rel="stylesheet" href="/css/style.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -12,65 +12,90 @@
     <script src="/js/script.js"></script>
   </head>
   <body>
+    {{#logged_in}}
     <header>
       <nav>
         <div class="nav-wrapper">
-          <a href="index" class="brand-logo">OPEN FDA</a>
+          <ul id="userdropdown" class="dropdown-content">
+            <li><a href="../profile/{{id}}">Profile</a></li>
+            <li><a href="../settings/{{id}}">Settings</a></li>
+            <li class="divider"></li>
+            <li><a href="../logout/{{id}}">Log Out</a></li>
+          </ul>
+          <a href="/" class="brand-logo">OPEN FDA</a>
           <ul id="nav-mobile" class="right hide-on-med-and-down">
-            <li><a href="index">Dashboard</a></li>
-            <li><a href="druginfo">Drug Info</a></li>
-            <li><a href="visuals">Visualizations</a></li>
-            <li><a href="professionals">Professional</a></li>
+            <li ><a href="../dashboard/{{id}}"><i style="height: 56px;" class="material-icons">view_list</i></a></li>
+            <li class="active"><a href="../druginfo/{{id}}"><i style="height: 56px;" class="material-icons">info</i></a></li>
+            <li><a href="../visuals/{{id}}"><i style="height: 56px;" class="material-icons">assessment</i></a></li>
+            <li><a href="../professionals/{{id}}"><i style="height: 56px;" class="material-icons">description</i></a></li>
+            <!-- Dropdown Trigger -->
+            <li><a class="dropdown-button" href="#!" data-activates="userdropdown"><i style="height: 56px;" class="material-icons">settings</i></a></li>
           </ul>
         </div>
       </nav>
     </header>
-    <div class="container">
-      <div class="row">
-        <div class="col s12">
-          <div class="row">
-            <div class="input-field col s12">
-              <input type="text" id="autocomplete-input" class="autocomplete" placeholder="Search for Drug Name" >
-              <button type="submit" class="btn btn-primary col s3 offset-s5" id="searchbtn">Search</button>
+    <div class="row">
+      <h5 class="col s12 center-align"><span class="flow-text ">Search for a drug to see selected information about the drug</span></h5>
+    </div>
+    <div class="row">
+      <div class="col s12">
+        <div class="container row">
+          <div class="input-field col s9">
+            <input type="text" id="autocomplete-input" class="autocomplete col s12" placeholder="Search for Drug Name" >
+          </div>
+          <div class="input-field col s3">
+            <button type="submit" class="btn btn-primary" id="searchbtn">Search</button>
+          </div>
+        </div>
+        <br>
+        <div class="container">
+          <div class="col s10 ">
+            <div id="popout" class="section scrollspy">
             </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-</div>
-<div class="container">
-  <div class="row">
-    <div class="col s12 m9 l8">
-      <fieldset>
-        <legend>Generic Name</legend>
-        <h5 class="generic"></h5>
-      </fieldset>
+    {{/logged_in}}
+    <!-- not logged in -->
+    {{^logged_in}}
+    <header>
+      <nav>
+        <div class="nav-wrapper">
+          <a href="login" class="brand-logo">OPEN FDA</a>
+          <ul id="nav-mobile" class="right hide-on-med-and-down">
+            <li><a href="dashboard"><i style="height: 56px;" class="material-icons">view_list</i></a></li>
+            <li class="active"><a href="druginfo"><i style="height: 56px;" class="material-icons">info</i></a></li>
+            <li><a href="visuals"><i style="height: 56px;" class="material-icons">assessment</i></a></li>
+            <li><a href="professionals"><i style="height: 56px;" class="material-icons">description</i></a></li>
+            <!-- Dropdown Trigger -->
+            <li><a href="/" ><i style="height: 56px;" class="material-icons">vpn_key</i></a></li>
+          </ul>
+        </div>
+      </nav>
+    </header>
+    <div class="row">
+      <h5 class="col s12 center-align"><span class="flow-text ">Search for a drug to see selected information about the drug</span></h5>
     </div>
-  </div>
-</div>
-<div class="container">
-  <div id="popout" class="section scrollspy">
-    <h4>Drug Information</h4>
-    <ul class="collapsible popout collapsible-accordion" data-collapsible="accordion">
-      <li class="">
-        <div class="collapsible-header active">Dosage and How to Administer</div>
-        <div class="collapsible-body" style="display: none;"><p class="dosage"></p></div>
-      </li>
-      <li class="">
-        <div class="collapsible-header">Indications for Use</div>
-        <div class="collapsible-body" style="display: none;"><p class="indications"></p></div>
-      </li>
-      <li>
-        <div class="collapsible-header">Contraindications</div>
-        <div class="collapsible-body"><p class="contraindications"></p></div>
-      </li>
-      <li>
-        <div class="collapsible-header">Warnings</div>
-        <div class="collapsible-body"><p class="warnings_and_cautions"></p></div>
-      </li>
-    </ul>
-  </div>
-</div>
-</body>
+    <div class="row">
+      <div class="col s12">
+        <div class="container row">
+          <div class="input-field col s9">
+            <input type="text" id="autocomplete-input" class="autocomplete col s12" placeholder="Search for Drug Name">
+          </div>
+          <div class="input-field col s3">
+            <button type="submit" class="btn btn-primary" id="searchbtn">Search</button>
+          </div>
+        </div>
+        <br>
+        <div class="container">
+          <div class="col s10 ">
+            <div id="popout" class="section scrollspy">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    {{/logged_in}}
+  </body>
 </html>
