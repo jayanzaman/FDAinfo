@@ -36,3 +36,4 @@ both logged in and non-logged in user can serach for specific drugs
 * In the Drug Info tab, only certain information about a particular drug is shown
 * In the Professionals tab, all relevant information about a particular drug is shown
 
+https://fdainfo.herokuapp.com/
