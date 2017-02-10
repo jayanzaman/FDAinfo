@@ -317,6 +317,33 @@ app.get("/settings/:id", function(req, res) {
         })
 })
 
+app.get("/profile/:id", function(req, res) {
+    var logged_in;
+    var email;
+    var id;
+
+    if (req.session.user) {
+        logged_in = true;
+        email = req.session.user.email;
+        id = req.session.user.id;
+    }
+    var data = {
+        "logged_in": logged_in,
+        "email": email,
+        "id": id
+    }
+    db.any("SELECT * FROM users WHERE users.email = $1 ", [data.email])
+        .then(function(user) {
+            data = {
+                "logged_in": logged_in,
+                "email": email,
+                "id": id,
+                "user": user
+            }
+            res.render('profile', data)
+        })
+})
+
 app.get("/logout/:id", function(req, res) {
     var logged_in;
     var email;
